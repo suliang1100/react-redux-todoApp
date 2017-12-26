@@ -21,7 +21,14 @@ class AddTodo extends Component {
         })
     }
 
+    onKeyUp(e){
+        if(e.keyCode === 13){
+            this.onSubmit();
+        }
+    }
+
     onSubmit(){
+
         const inputValue = this.state.value;
 
         if(!inputValue.trim()){
@@ -36,7 +43,7 @@ class AddTodo extends Component {
         return (
             <Row gutter={16}>
                 <Col className="gutter-row" span={19}>
-                    <Input placeholder="请输入待办事项" onChange={this.inputValueChange.bind(this)} value={this.state.value} />
+                    <Input placeholder="请输入待办事项" onKeyUp={this.onKeyUp.bind(this)} onChange={this.inputValueChange.bind(this)} value={this.state.value} />
                 </Col>
                 <Col className="gutter-row" span={4}>
                     <Button type="primary" onClick={this.onSubmit.bind(this)}>新增</Button>
@@ -47,6 +54,16 @@ class AddTodo extends Component {
 }
 
 const mapDispathToProps = (dispath) => {
+    // return (dispath) => {
+    //     return {
+    //         onAdd: (text) => {
+    //             setTimeout(()=>{
+    //                 dispath(addTodo(text));
+    //             },1000);
+    //         }
+    //     }
+    //
+    // }
     return {
         onAdd: (text) => {
             dispath(addTodo(text));

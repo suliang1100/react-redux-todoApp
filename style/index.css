@@ -41,3 +41,8 @@ ul{
 .filter{
     margin:0 10px 0 0;
 }
+.app-title{
+    font-size:18px;
+    padding: 5px 0 15px 0;
+    text-align: center;
+}
