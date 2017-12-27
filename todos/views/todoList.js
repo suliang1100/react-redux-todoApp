@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import TransitionGroup from 'react-addons-css-transition-group';
 
 import {toggleTodo,removeTodo} from '../actions.js';
 import {FilterTypes} from '../../constants.js';
@@ -9,11 +10,13 @@ import TodoListItem from './todoListItem.js'
 const TodoList = ({todos,onToggleTodo,onRemoveTodo}) => {
     return (
         <ul className="todo-list">
+            <TransitionGroup transitionName="fade" transitionEnterTimeout={500} transitionLeaveTimeout={200}>
             {
                 todos.map((item) => (
                     <TodoListItem key={item.id} text={item.text} completed={item.completed} onToggle={()=>onToggleTodo(item.id)} onRemove={()=>onRemoveTodo(item.id)} />
                 ))
             }
+            </TransitionGroup>
         </ul>
     );
 };
